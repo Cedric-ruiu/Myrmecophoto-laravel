@@ -1,0 +1,44 @@
+html {
+  font-size: 100%;
+}
+
+body {
+  min-width: 320px;
+  margin: 0 auto;
+  font-family: Quicksand, sans-serif;
+  font-size: rem(14px);
+  line-height: 1.5;
+}
+
+h1,
+.-h1 {
+  @include breakpoint-sizing(font-size, (sm: 36px, lg: 55px));
+  @include default-heading-properties;
+
+  font-family: 'Open Sans', sans-serif;
+  font-style: italic;
+  font-weight: normal;
+}
+
+h2,
+.-h2 {
+  @include breakpoint-sizing(font-size, (sm: 18px, lg: 24px));
+  @include default-heading-properties;
+
+  font-weight: 700;
+}
+
+h3,
+.-h3 {
+  @include breakpoint-sizing(font-size, (sm: 14px, lg: 18px));
+  @include default-heading-properties;
+
+  font-weight: 500;
+}
+
+p,
+.-p {
+  @include default-heading-properties;
+
+  font-size: rem(14px);
+}

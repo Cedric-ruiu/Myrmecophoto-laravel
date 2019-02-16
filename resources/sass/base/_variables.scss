@@ -1,0 +1,24 @@
+// The base default font-size
+$root-font-size: 16px !default;
+
+// Best default line-height
+$line-height: 1.5 !default;
+
+// Choose between rem|em|px
+$unit-default: rem !default;
+
+// Famous magic number
+$magic-number: $line-height * $root-font-size !default;
+
+// Typo fluid sizing is not an obligation
+$typography-flexible: true !default;
+
+// Define here all your breakpoints, choose the unit (rem|em|px) what you prefer like a dev frontend and not like end user
+// Values will be reset with $unit-default
+$breakpoints: (
+  xs: 320px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;

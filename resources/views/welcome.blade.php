@@ -11,7 +11,10 @@
     <style></style>
 </head>
     <body>
-        <h1>Hello html world</h1>
+        <h1>Title h1</h1>
+        <h2>Title h2</h2>
+        <h3>Title h3</h3>
+        <p>Paragraph</p>
 
         <script src="{{ mix('/js/app.js') }}"></script>
     </body>

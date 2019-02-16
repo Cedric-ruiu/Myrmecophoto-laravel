@@ -1,0 +1,130 @@
+// Reset all breakpoints default unit values by the `$unit-default
+@mixin reset-breakpoints-unit($unit: $unit-default) {
+  @if ($typography-flexible) {
+    @each $bp, $size in $breakpoints {
+      @if (null == index($unit, unit($size))) {
+        $size: to-unit($unit, $size);
+        $breakpoints: map-merge($breakpoints, ($bp: $size)) !global;
+      }
+    }
+  }
+}
+
+// Use this mixin to force fluid-sizing in your breakpoint
+@mixin breakpoint-fluid-sizing($property, $map-sizes, $unit:$unit-default) {
+  $poly-fluid-map: ();
+
+  @if (length($map-sizes) == 0) {
+    //@error '`#{$bp}` is not a valid breakpoint, use one defined in `$breakpoints`.';
+  }
+
+  // Construct associative arrays readable by poly-fluid-sizing
+  @each $bp, $size in $map-sizes {
+    @if (map-has-key($breakpoints, $bp) == false) {
+      @error '`#{$bp}` is not a valid breakpoint, use one defined in `$breakpoints`.';
+    }
+
+    $bp-size: map-get($breakpoints, $bp);
+
+    @if (null == index($unit, unit($size))) {
+      $size: to-unit($unit, $size);
+    }
+
+    @if (null == index($unit, unit($bp-size))) {
+      $bp-size: to-unit($unit, $bp-size);
+    }
+
+    $poly-fluid-map: map-merge($poly-fluid-map, ($bp-size: $size));
+  }
+
+  $poly-fluid-map-size: length(map-keys($poly-fluid-map));
+
+  @if ($poly-fluid-map-size == 0) {
+    @warn '`#{$map-sizes}` doesn\'t provide values that we can process (empty result).';
+  } @else if ($poly-fluid-map-size == 1) {
+    #{$property}: $size;
+  } @else {
+    @include poly-fluid-sizing($property, $poly-fluid-map);
+  }
+}
+
+// Use this mixin to force fixed-sizing in your breakpoint
+// `$unit` will reset unit of your value property, not in the breakpoint declaration
+@mixin breakpoint-fixed-sizing($property, $map-sizes, $unit:$unit-default) {
+  // Output the a fixed font-size & line-height by breakpoint for one type
+  $initialized-font-size: false;
+
+  @each $bp, $size in $map-sizes {
+    @if (map-has-key($breakpoints, $bp) == false) {
+      @error '`#{$bp}` is not a valid breakpoint, use one defined in `$breakpoints`.';
+    }
+
+    @if (null == index($unit, unit($size))) {
+      $size: to-unit($unit, $size);
+    }
+
+    // Output font-size
+    @if ($initialized-font-size) {
+      // Output font-size in a media query
+      @include media('>=#{$bp}') {
+        #{$property}: $size;
+      }
+    } @else {
+      // Output the font-size for first, to support all previous breakpoint
+      #{$property}: $size;
+      $initialized-font-size: true;
+    }
+  }
+}
+
+// Breakpoint sizing, safe to use this. Based on `$typography-flexible`
+@mixin breakpoint-sizing($property, $map-sizes, $unit:$unit-default) {
+  @if ($typography-flexible) {
+    @include breakpoint-fluid-sizing($property, $map-sizes, $unit);
+  } @else {
+    @include breakpoint-fixed-sizing($property, $map-sizes, $unit);
+  }
+}
+
+// Get the magic number, with coef and a good unit
+// https://www.smashingmagazine.com/2011/03/technical-web-typography-guidelines-and-techniques/#the-magic-number
+@function magic-numbered($coef:1, $unit: $unit-default) {
+  $magic-number-val: $magic-number;
+
+  @if (null == index($unit, unit($magic-number-val))) {
+    $magic-number-val: to-unit($unit, $magic-number-val);
+  }
+
+  @return $magic-number-val * $coef;
+}
+
+// Get the standard vertical margin in single direction
+// https://csswizardry.com/2012/06/single-direction-margin-declarations/
+@mixin margin-single-direction ($coef:1, $unit: $unit-default) {
+  margin-bottom: magic-numbered($coef, $unit);
+}
+
+// Apply default properties to an heading
+@mixin default-heading-properties() {
+  @include margin-single-direction();
+
+  margin-top: 0;
+  line-height: 1.5;
+}
+
+// standard way to truncate text
+@mixin truncate {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+// bloc
+// inspired by island: https://csswizardry.com/2011/10/the-island-object/
+@mixin bloc {
+  @include margin-single-direction();
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+}
