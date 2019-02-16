@@ -28,6 +28,7 @@
         "stylelint-config-standard": "^18.2.0",
         "stylelint-order": "^2.0.0",
         "stylelint-scss": "^3.5.3",
+        "unitconversion": "^2.1.13",
         "vue-template-compiler": "^2.6.6"
     }
 }
