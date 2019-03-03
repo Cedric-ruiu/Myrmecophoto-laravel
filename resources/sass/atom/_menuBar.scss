@@ -1,0 +1,103 @@
+$menuBar-height: 3px !default;
+$menuBar-width: 25px !default;
+
+.u-menuBar {
+  position: relative;
+  box-sizing: content-box;
+  width: $menuBar-width;
+  height: $menuBar-height;
+  padding: 0;
+  transition: background-color 0.2s ease;
+  border-top: #{$soft-touch + $menuBar-height * 2} solid $color-background;
+  border-right: $soft-touch solid $color-background;
+  border-bottom: #{$soft-touch + $menuBar-height * 2} solid $color-background;
+  border-left: $soft-touch solid $color-background;
+  background-color: $color-primary;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $menuBar-height;
+    background-color: $color-primary;
+    content: '';
+  }
+
+  &::before {
+    animation: barTop animation-duration() $animation-easing 1 normal both;
+  }
+
+  &::after {
+    animation: barBottom animation-duration() $animation-easing 1 normal both;
+  }
+
+  &.-on {
+    background-color: transparent;
+
+    &::before {
+      animation-name: barTopOn;
+    }
+
+    &::after {
+      animation-name: barBottomOn;
+    }
+  }
+}
+
+@keyframes barTop {
+  0% {
+    transform: translateY(0) rotateZ(45deg);
+  }
+
+  50% {
+    transform: translateY(0) rotateZ(0);
+  }
+
+  100% {
+    transform: translateY(-$menuBar-height * 2) rotateZ(0);
+  }
+}
+
+@keyframes barTopOn {
+  0% {
+    transform: translateY(-$menuBar-height * 2) rotateZ(0);
+  }
+
+  50% {
+    transform: translateY(0) rotateZ(0);
+  }
+
+  100% {
+    transform: translateY(0) rotateZ(45deg);
+  }
+}
+
+@keyframes barBottom {
+  0% {
+    transform: translateY(0) rotateZ(-45deg);
+  }
+
+  50% {
+    transform: translateY(0) rotateZ(0);
+  }
+
+  100% {
+    transform: translateY($menuBar-height * 2) rotateZ(0);
+  }
+}
+
+@keyframes barBottomOn {
+  0% {
+    transform: translateY($menuBar-height * 2) rotateZ(0);
+  }
+
+  50% {
+    transform: translateY(0) rotateZ(0);
+  }
+
+  100% {
+    transform: translateY(0) rotateZ(-45deg);
+  }
+}

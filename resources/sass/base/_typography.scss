@@ -1,13 +1,22 @@
+:focus {
+  outline-color: $color-primary;
+}
+
 html {
   font-size: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
   min-width: 320px;
-  margin: 0 auto;
-  font-family: Quicksand, sans-serif;
+  background-color: $color-background;
+  color: $color-text;
+  font-family: $font-family-base;
   font-size: rem(14px);
   line-height: 1.5;
+  text-align: left;
 }
 
 h1,
@@ -15,7 +24,7 @@ h1,
   @include breakpoint-sizing(font-size, (sm: 36px, lg: 55px));
   @include default-heading-properties;
 
-  font-family: 'Open Sans', sans-serif;
+  font-family: $font-family-title;
   font-style: italic;
   font-weight: normal;
 }
@@ -41,4 +50,21 @@ p,
   @include default-heading-properties;
 
   font-size: rem(14px);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: $color-text;
+  text-decoration: underline;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.-on {
+    color: $color-primary;
+  }
 }

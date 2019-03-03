@@ -1,0 +1,12 @@
+$wrapper-padding-x-dsk: magic-numbered() !default;
+$wrapper-padding-x-mob: $wrapper-padding-x-dsk / 2 !default;
+
+.t-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $wrapper-padding-x-mob;
+
+  @include media('>sm') {
+    padding: 0 $wrapper-padding-x-dsk;
+  }
+}

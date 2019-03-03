@@ -1,0 +1,93 @@
+.m-nav {
+  padding-left: #{magic-numbered()};
+  transform: translateX(-100vw);
+  transition: all 0.4s ease;
+  border-right: 1px solid $color-border;
+  background-color: $color-background;
+  opacity: 0;
+
+  @include media('>sm') {
+    transform: translateX(0);
+  }
+
+  &.-on {
+    transform: translateX(-#{$wrapper-padding-x-dsk});
+    opacity: 1;
+  }
+
+  @include media('>sm') {
+    padding-left: 0;
+    border: none;
+    opacity: 1;
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    margin-left: magic-numbered();
+
+    @include media('>sm') {
+      flex-direction: row;
+      margin: 0 #{magic-numbered()} 0 0;
+    }
+  }
+
+  &__item {
+    margin-top: magic-numbered();
+    list-style-type: none;
+    font-size: rem(18px);
+
+    @include media('>sm') {
+      margin: 0 0 0 magic-numbered();
+      font-size: rem(14px);
+    }
+  }
+
+  &__link {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.-on {
+      color: $color-text;
+      font-weight: 500;
+    }
+
+    &::before {
+      display: block;
+      height: 0;
+      font-weight: bold;
+      content: attr(title);
+      overflow: hidden;
+      visibility: hidden;
+    }
+
+    &.-on::after {
+      $navBullet: 4px;
+
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: calc((-#{magic-numbered()} / 2) - #{$navBullet / 2});
+      width: $navBullet;
+      height: $navBullet;
+      margin: auto 0;
+      border-radius: $navBullet / 2;
+      background-color: $color-primary;
+      content: '';
+
+      @include media('>sm') {
+        top: initial;
+        right: 0;
+        bottom: initial;
+        left: 0;
+        margin: 0 auto;
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-# Objective
+# Goals
 
 1. Performance
 2. Modern engine/concept (bye IE)

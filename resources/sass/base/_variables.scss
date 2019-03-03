@@ -1,3 +1,5 @@
+// Typography
+
 // The base default font-size
 $root-font-size: 16px !default;
 
@@ -13,6 +15,11 @@ $magic-number: $line-height * $root-font-size !default;
 // Typo fluid sizing is not an obligation
 $typography-flexible: true !default;
 
+$font-family-base: Quicksand, sans-serif !default;
+$font-family-title: 'Open Sans', sans-serif !default;
+
+// Breakpoints
+
 // Define here all your breakpoints, choose the unit (rem|em|px) what you prefer like a dev frontend and not like end user
 // Values will be reset with $unit-default
 $breakpoints: (
@@ -22,3 +29,18 @@ $breakpoints: (
   lg: 992px,
   xl: 1200px
 ) !default;
+
+// Colors
+
+$color-primary: #e72c27 !default;
+$color-secondary: #646464 !default;
+$color-background: #080808 !default;
+$color-text: #fbfbfb !default;
+$color-text-alt: $color-secondary !default;
+$color-border: $color-secondary !default;
+
+// Animations / UX
+
+$animation-duration: 200ms !default;
+$animation-easing: ease !default;
+$soft-touch: 10px !default; // standart space arround element, better to touch

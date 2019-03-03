@@ -86,18 +86,6 @@
   }
 }
 
-// Get the magic number, with coef and a good unit
-// https://www.smashingmagazine.com/2011/03/technical-web-typography-guidelines-and-techniques/#the-magic-number
-@function magic-numbered($coef:1, $unit: $unit-default) {
-  $magic-number-val: $magic-number;
-
-  @if (null == index($unit, unit($magic-number-val))) {
-    $magic-number-val: to-unit($unit, $magic-number-val);
-  }
-
-  @return $magic-number-val * $coef;
-}
-
 // Get the standard vertical margin in single direction
 // https://csswizardry.com/2012/06/single-direction-margin-declarations/
 @mixin margin-single-direction ($coef:1, $unit: $unit-default) {

@@ -1,1 +1,14 @@
-// Coming...
+// Get the magic number, with coef and a good unit
+// https://www.smashingmagazine.com/2011/03/technical-web-typography-guidelines-and-techniques/#the-magic-number
+@function magic-numbered($coef:1, $unit: $unit-default) {
+  @if (null == index($unit, unit($magic-number))) {
+    $magic-number: to-unit($unit, $magic-number);
+  }
+
+  @return $magic-number * $coef;
+}
+
+// Get standard animation duration, with coef
+@function animation-duration($coef:1) {
+  @return $animation-duration * $coef;
+}

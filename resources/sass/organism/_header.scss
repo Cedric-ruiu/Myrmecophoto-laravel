@@ -1,0 +1,56 @@
+.o-header {
+  $header-height: 80px;
+
+  position: relative;
+  height: $header-height;
+  border-bottom: 1px solid $color-border;
+
+  &__wrapped {
+    display: grid;
+    grid-template:
+      'menuBar title .' $header-height
+      'nav nav nav' calc(100vh - #{$header-height})
+      / 50px auto 50px;
+
+    @include media('>sm') {
+      grid-template:
+        'title nav' #{$header-height}
+        / 200px auto;
+    }
+  }
+
+  &__logo {
+    grid-area: title;
+    place-self: center;
+
+    @include media('>sm') {
+      place-self: center start;
+    }
+  }
+
+  &__menuBar {
+    grid-area: menuBar;
+    place-self: center start;
+
+    @include media('>sm') {
+      display: none;
+    }
+  }
+
+  &__nav {
+    grid-area: nav;
+    place-self: stretch;
+
+    @include media('>sm') {
+      place-self: center end;
+    }
+  }
+}
+
+.-primary {
+  color: $color-primary;
+}
+
+.-secondary {
+  color: $color-secondary;
+}
