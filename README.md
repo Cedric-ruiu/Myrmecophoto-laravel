@@ -1,3 +1,9 @@
+:warning::warning::warning:
+
+This project was launched to migrate the "Myrmecophoto" website from the "CodeIgniter" framework to "Laravel", but development was stopped very early for many personal reasons. All I had done was address purely frontend points. Now my mind is "improved", and I prefer to move to a new architecture to migrate this website on ants macro-photography => [Visit the new repo based on Nuxt framework](https://github.com/Cedric-ruiu/myrmecophoto-vue)
+
+:warning::warning::warning:
+
 # Goals
 
 1. Performance
